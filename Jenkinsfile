@@ -13,7 +13,7 @@ pipeline {
             steps {
                 script {
                       
-                        docker.build("py-app:${env.BUILD_NUMBER}")
+                        docker.build(" --network=my-network -t py-app:${env.BUILD_NUMBER}")
                     
                 }
             }
