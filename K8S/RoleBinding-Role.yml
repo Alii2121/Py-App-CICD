@@ -5,7 +5,7 @@ metadata:
   namespace: jenkins
   name: create-app
 rules:
-- apiGroups: [""]
+- apiGroups: ["", "apps", "extensions"]
   resources: ["*"]
   verbs: ["*"]
 ---
