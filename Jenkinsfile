@@ -13,7 +13,7 @@ pipeline {
             steps {
                 script {
                                     
-
+                              sh 'pwd'
                               sh 'docker build .  -t alimarawan2121/py-app'
                         
                               // docker.build(" --network=my-network -t py-app:${env.BUILD_NUMBER}")
