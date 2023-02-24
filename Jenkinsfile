@@ -25,9 +25,18 @@ pipeline {
         stage('Push Docker Image') {
             steps {
                 script {
-                    docker.withRegistry('https://hub.docker.com/', 'DockerHub') {
-                        dockerImage.push("${env.BUILD_NUMBER}")
-                    }
+
+                    withCredentials([usernamePassword(credentialsId: 'DockerHub', usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD')]) {
+                    sh "docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD $DOCKER_HUB"
+                    sh "docker alimarawan2121/py-app"
+                    sh "docker logout $DOCKER_HUB"
+                }
+
+
+
+//                     docker.withRegistry('https://hub.docker.com/', 'DockerHub') {
+//                         dockerImage.push("${env.BUILD_NUMBER}")
+//                     }
                 }
             }
         }
