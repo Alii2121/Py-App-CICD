@@ -16,7 +16,7 @@ pipeline {
                               sh 'pwd'
                               sh 'docker build .  -t alimarawan2121/py-app'
                         
-                              // docker.build(" --network=my-network -t py-app:${env.BUILD_NUMBER}")
+                              // docker.build(py-app:${env.BUILD_NUMBER}")
                     
                 }
             }
@@ -30,13 +30,9 @@ pipeline {
                     sh "docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD"
                     sh "docker push alimarawan2121/py-app"
                     
+                    
                 }
-
-
-
-//                     docker.withRegistry('https://hub.docker.com/', 'DockerHub') {
-//                         dockerImage.push("${env.BUILD_NUMBER}")
-//                     }
+                    
                 }
             }
         }
@@ -49,7 +45,10 @@ pipeline {
                           kubectl apply -f /var/jenkins_home/workspace/Python-App-CI-CD/K8S/Redis-Deployment -n app
                          kubectl apply -f /var/jenkins_home/workspace/Python-App-CI-CD/K8S/Redis-svc.yml -n app
                           kubectl apply -f /var/jenkins_home/workspace/Python-App-CI-CD/K8S/Py-App-Dployment.yml -n app
-                        kubectl apply -f /var/jenkins_home/workspace/Python-App-CI-CD/K8S/LB-Py-App.yml -n app """
+                        kubectl apply -f /var/jenkins_home/workspace/Python-App-CI-CD/K8S/LB-Py-App.yml -n app 
+                        docker logout     """
+
+         // This sequence is used to avoid any errors in dependencies of resources on each other
                 }
             }
         }
