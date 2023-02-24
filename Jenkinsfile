@@ -9,7 +9,7 @@ pipeline {
             }
         }   
         
-        stage('Build Docker Image') {
+        stage('CI: Build Docker Image') {
             steps {
                 script {
                                     
@@ -44,7 +44,12 @@ pipeline {
         stage('CD on EKS') {
             steps {
                 script {
-                    sh "kubectl apply -f /var/jenkins_home/workspace/Python-App-CI-CD/K8S/ConfigMap.yml -n app"
+                    sh """
+                          kubectl apply -f /var/jenkins_home/workspace/Python-App-CI-CD/K8S/ConfigMap.yml -n app
+                          kubectl apply -f /var/jenkins_home/workspace/Python-App-CI-CD/K8S/Redis-Deployment -n app
+                         kubectl apply -f /var/jenkins_home/workspace/Python-App-CI-CD/K8S/Redis-svc.yml -n app
+                          kubectl apply -f /var/jenkins_home/workspace/Python-App-CI-CD/K8S/Py-App-Dployment.yml -n app
+                        kubectl apply -f /var/jenkins_home/workspace/Python-App-CI-CD/K8S/LB-Py-App.yml -n app """
                 }
             }
         }
