@@ -44,7 +44,7 @@ pipeline {
         stage('CD on EKS') {
             steps {
                 script {
-                    sh "kubectl create ns py-app"
+                    sh "kubectl apply -f /var/jenkins_home/workspace/Python-App-CI-CD/K8S/ConfigMap.yml -n app"
                 }
             }
         }
