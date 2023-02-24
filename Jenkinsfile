@@ -13,7 +13,7 @@ pipeline {
             steps {
                 script {
                       
-                        docker.build("py-app:${env.BUILD_NUMBER}", "/var/jenkins_home/workspace/Py-App-CICD/Dockerfile")
+                        docker.build("py-app:${env.BUILD_NUMBER}")
                     
                 }
             }
