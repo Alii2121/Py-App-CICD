@@ -44,7 +44,7 @@ pipeline {
         stage('CD on EKS') {
             steps {
                 script {
-                    sh "kubectl apply -f ConfigMap.yaml"
+                    sh "kubectl create ns py-app"
                 }
             }
         }
