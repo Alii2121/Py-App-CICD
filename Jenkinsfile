@@ -12,8 +12,9 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 script {
-                      
-                        docker.build(" --network=my-network -t py-app:${env.BUILD_NUMBER}")
+                         sh 'docker build --network=my-netwrok -t alimarawan2121/py-ap'
+                        
+                              // docker.build(" --network=my-network -t py-app:${env.BUILD_NUMBER}")
                     
                 }
             }
