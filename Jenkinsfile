@@ -12,7 +12,7 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 script {
-                         sh 'docker network create my-network'
+                      
                         docker.build("py-app:${env.BUILD_NUMBER}", "/var/jenkins_home/workspace/Py-App-CICD/Dockerfile")
                     
                 }
